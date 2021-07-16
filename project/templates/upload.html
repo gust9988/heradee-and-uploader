@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>ANS Uploader</title>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/upload.css') }}">
+    </head>
+    <body>
+        <div class="con1">
+            <div>
+                <h1>ANS 업로더</h1>
+                <h2>슬라이드 사진 (웹 1920 : 1280)</h2>
+                <div class="con1-1">
+
+                    <form id="sliderweb" action="" method="post" enctype="multipart/form-data">
+                    {% for i in range(1, 5) %}
+                        <input type="file" id="filename{{ i }}" name="filename{{ i }}">
+                            <div>
+                                <img id="preImage{{ i }}">
+                            </div>
+                    {% endfor %}
+                    </form>
+
+                    <div>
+                        <h2>슬라이드 사진 (모바일 1920 : 2880)</h2>
+                    </div>
+
+                    <form id="slidermobile" action="" method="post" enctype="multipart/form-data">
+                    {% for i in range(5,9) %}
+                        <input type="file" id="filename{{ i }}" name="filename{{ i }}">
+                            <div>
+                                <img id="preImage{{ i }}">
+                            </div>
+                    {% endfor %}
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </body>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/upload.js') }}"></script>
+</html>
