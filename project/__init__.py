@@ -14,6 +14,15 @@ def create_app():
     # CONFIG
     app.config.from_object(BaseConfig())
 
+    # DB INIT
+    db.init_app(app)
+    migrate.init_app(app, db)
+
+
+
+    # CONFIG
+    app.config.from_object(BaseConfig())
+
     # uploader
 
     from project.controllers.heradeeansuploader import ansuploader

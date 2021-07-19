@@ -15,7 +15,7 @@ def upload():
     elif request.method == 'POST':
         if request.form.get('action') == 'anssubmit':
 
-            # SLIDE
+            # SLIDE PICS
             for i in range(1, 9):
                 if not request.files['slide' + str(i)]:
                     pass
@@ -26,7 +26,7 @@ def upload():
                              f'ans/{request.form.get("ans_account")}/slide/',
                              f'{i}.jpg')
 
-            # PROFILE
+            # PROFILE PICS
             if request.files['profile']:
                 pilimgs3(request.files['profile'],
                          pilimg(request.files['profile']).size[0],
@@ -34,10 +34,12 @@ def upload():
                          f'ans/{request.form.get("ans_account")}/profile/',
                          '1.jpg')
 
+            # ABOUT CONTENT
             if request.form.get('aboutme'):
-                ansuser = Ans.query.filter(Ans.ans_account == request.form.get("ans_account").first())
+                ansuser = Ans.query.filter(Ans.ans_account == request.form.get("ans_account")).first()
                 ansuser.ans_about_me_content = request.form.get('aboutme')
                 db.session.commit()
+
 
             return render_template('upload.html')
 
