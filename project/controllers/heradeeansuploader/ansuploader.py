@@ -1,4 +1,7 @@
 from flask import Blueprint, render_template, request
+
+from project import db
+from project.models.model import Ans
 from project.modules.imagePillow import pilimgs3, pilimg
 
 bp = Blueprint('ansupload', __name__, url_prefix='/')
@@ -32,9 +35,9 @@ def upload():
                          '1.jpg')
 
             if request.form.get('aboutme'):
-
-
-
+                ansuser = Ans.query.filter(Ans.ans_account == request.form.get("ans_account").first())
+                ansuser.ans_about_me_content = request.form.get('aboutme')
+                db.session.commit()
 
             return render_template('upload.html')
 
