@@ -7,37 +7,51 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/upload.css') }}">
     </head>
     <body>
-        <div class="con1">
+        <div>
             <div>
                 <h1>ANS 업로더</h1>
-                <h2>슬라이드 사진 (웹 1920 : 1280)</h2>
-                <div class="con1-1">
+                <div>
+                    <form id="slider" action="" method="post" enctype="multipart/form-data">
 
-                    <form id="sliderweb" action="" method="post" enctype="multipart/form-data">
+                    <label onformdata="ans_account">계정 이름</label>
+                    <input type="text" id="ans_account" name="ans_account" required><br>
+                    <h2>슬라이드 사진 (웹 1920 : 1280)</h2>
                     {% for i in range(1, 5) %}
-                        <input type="file" id="filename{{ i }}" name="filename{{ i }}">
-                            <div>
-                                <img id="preImage{{ i }}">
-                            </div>
+                        <div>
+                            <input type="file" id="slide{{ i }}" name="slide{{ i }}">
+                        </div>
                     {% endfor %}
-                    </form>
-
                     <div>
                         <h2>슬라이드 사진 (모바일 1920 : 2880)</h2>
                     </div>
-
-                    <form id="slidermobile" action="" method="post" enctype="multipart/form-data">
                     {% for i in range(5,9) %}
-                        <input type="file" id="filename{{ i }}" name="filename{{ i }}">
-                            <div>
-                                <img id="preImage{{ i }}">
-                            </div>
+                        <div>
+                            <input type="file" id="slide{{ i }}" name="slide{{ i }}">
+                        </div>
                     {% endfor %}
+
+                    <div>
+                        <h2>프로필 사진</h2>
+                    </div>
+
+                    <div>
+                        <input type="file" id="profile" name="profile">
+                    </div>
+
+                        <div>
+                        <h2>프로필 사진</h2>
+                    </div>
+
+                    <div>
+                        <input type='text' id="aboutme" name="aboutme">
+                    </div>
+
+                    <button type="submit" name="action" value="anssubmit">올려버렷</button>
                     </form>
+
                 </div>
             </div>
 
         </div>
     </body>
-    <script type="text/javascript" src="{{ url_for('static', filename='js/upload.js') }}"></script>
 </html>
