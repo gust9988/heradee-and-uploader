@@ -1,7 +1,6 @@
 from flask import Blueprint, render_template, request
-
 from project import db
-from project.models.model import Ans
+from project.models.model import Ans, Ansport
 from project.modules.imagePillow import pilimgs3, pilimg
 
 bp = Blueprint('ansupload', __name__, url_prefix='/')
@@ -38,8 +37,20 @@ def upload():
             if request.form.get('aboutme'):
                 ansuser = Ans.query.filter(Ans.ans_account == request.form.get("ans_account")).first()
                 ansuser.ans_about_me_content = request.form.get('aboutme')
-                db.session.commit()
 
+            # PORTFOLIO
+            if request.files['portfolio'] and request.form.get('portcont'):
+                ansport = Ansport()
+                ansport.port_account = request.form.get('ans_account')
+                ansport.port_cont_id = request.form.get('portnum')
+                ansport.port_cont = request.form.get('portcont')
+                pilimgs3(request.files['portfolio'],
+                         pilimg(request.files['portfolio']).size[0],
+                         pilimg(request.files['portfolio']).size[1],
+                         f'ans/{request.form.get("ans_account")}/portfolio/',
+                         f'{request.form.get("portnum")}.jpg')
+                db.session.add(ansport)
 
+            db.session.commit()
             return render_template('upload.html')
 

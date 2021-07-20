@@ -15,14 +15,14 @@
 
                     <label onformdata="ans_account">계정 이름</label>
                     <input type="text" id="ans_account" name="ans_account" required><br>
-                    <h2>슬라이드 사진 (웹 1920 : 1280)</h2>
+                    <h2>웹 슬라이드(1920 : 1280)</h2>
                     {% for i in range(1, 5) %}
                         <div>
                             <input type="file" id="slide{{ i }}" name="slide{{ i }}">
                         </div>
                     {% endfor %}
                     <div>
-                        <h2>슬라이드 사진 (모바일 1920 : 2880)</h2>
+                        <h2>모바일 슬라이드(1920 : 2880)</h2>
                     </div>
                     {% for i in range(5,9) %}
                         <div>
@@ -44,6 +44,22 @@
 
                     <div>
                         <textarea id="aboutme" name="aboutme" rows="25" cols="50"></textarea>
+                    </div>
+
+                    <div>
+                        <h2>포트폴리오</h2>
+                    </div>
+                    <div>
+                        <input type="file" id="portfolio" name="portfolio">
+                    </div>
+                    <div>
+                        <h2>포트폴리오 번호</h2>
+                    </div>
+                        <input type="text" id="portnum" name="portnum">
+                    <div>
+                    <div>
+                        <h2>포트폴리오 내용</h2>
+                        <textarea id="portcont" name="portcont" rows="25" cols="50"></textarea>
                     </div>
 
                     <button type="submit" name="action" value="anssubmit">올려버렷</button>
