@@ -44,6 +44,7 @@ def upload():
                 ansport.port_account = request.form.get('ans_account')
                 ansport.port_cont_id = request.form.get('portnum')
                 ansport.port_cont = request.form.get('portcont')
+                ansport.port_url = ''
                 pilimgs3(request.files['portfolio'],
                          pilimg(request.files['portfolio']).size[0],
                          pilimg(request.files['portfolio']).size[1],
